@@ -8,7 +8,10 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 })
 
 const personSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    unique: true,
+    type: String,
+  },
   age: Number,
   favoriteFoods: [String],
 })
@@ -16,17 +19,18 @@ const personSchema = new mongoose.Schema({
 
 let Person = mongoose.model('Person', personSchema);
 
-
-const createAndSavePerson = () => {
-  let person = new Person({
+const createAndSavePerson = (done) => {
+ let person = new Person({
     name: "John Doe",
     age: 24,
     favoriteFoods: ["Pizza", "HotDog", "Rice"],
   });
-
-  person.save().then(console.log("New User Created!")).catch(err => console.log(error))
-};
-
+console.log("this is just to show that this function works and it is not your code man")
+  person.save(function(err, data){
+    if (err) return console.error(err);   
+    done(null, data)
+  });
+} 
 const createManyPeople = (arrayOfPeople, done) => {
   done(null /*, data*/);
 };
