@@ -54,7 +54,6 @@ const createManyPeople = (arrayOfPeople, done) => {
   })
 };
 
-const personName = "Mary Slessor";
 
 const findPeopleByName = (personName, done) => {
   Person.find({name: personName}, function(err, personFound) {
