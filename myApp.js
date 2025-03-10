@@ -33,7 +33,7 @@ console.log("this is just to show that this function works and it is not your co
   });
 } 
 const createManyPeople = (arrayOfPeople, done) => {
-  Model.create(arrayOfPeople).then(console.log("people created")).catch(err => console.error(err))
+  Person.create(arrayOfPeople).then(console.log("people created")).catch(err => console.error(err))
   done(null, data);
 };
 
