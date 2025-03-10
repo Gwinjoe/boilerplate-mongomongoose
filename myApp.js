@@ -52,7 +52,6 @@ const createManyPeople = (arrayOfPeople, done) => {
     if(err) done(err);
     done(null, people);
   })
-  done(null, data);
 };
 
 const findPeopleByName = (personName, done) => {
