@@ -33,7 +33,8 @@ console.log("this is just to show that this function works and it is not your co
   });
 } 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Model.create(arrayOfPeople).then(console.log("people created")).catch(err => console.error(err))
+  done(null, data);
 };
 
 const findPeopleByName = (personName, done) => {
