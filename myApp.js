@@ -32,8 +32,26 @@ console.log("this is just to show that this function works and it is not your co
     done(null, data)
   });
 } 
+const arrayOfPeople = [
+  {
+    name: "Mary Slessor",
+    age: 27,
+    favoriteFoods: ["twins", "babies"]
+  }, {
+    name: "Ellen Gold White",
+    age: 12,
+    favoriteFoods: ["visions", "prophecy"],
+  }, {
+    name: "Elon Musk",
+    age: 32,
+    favoriteFoods: ["Tesla", "Money"],
+  }
+]
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople).then(console.log("people created")).catch(err => console.error(err))
+  Person.create(arrayOfPeople, function (err, people){
+    if(err) done(err);
+    done(null, people);
+  })
   done(null, data);
 };
 
