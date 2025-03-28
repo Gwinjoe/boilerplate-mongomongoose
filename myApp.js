@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require("mongoose")
 
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(
   console.log("Connection succesfull")
 ).catch((error) => {
   console.log("connection failed", error)
@@ -21,17 +21,17 @@ let Person = mongoose.model('Person', personSchema);
 
 
 const createAndSavePerson = (done) => {
- let person = new Person({
+  let person = new Person({
     name: "John Doe",
     age: 24,
     favoriteFoods: ["Pizza", "HotDog", "Rice"],
   });
-console.log("this is just to show that this function works and it is not your code man")
-  person.save(function(err, data){
-    if (err) return console.error(err);   
+  console.log("this is just to show that this function works and it is not your code man")
+  person.save(function(err, data) {
+    if (err) return console.error(err);
     done(null, data)
   });
-} 
+}
 const arrayOfPeople = [
   {
     name: "Mary Slessor",
@@ -48,22 +48,25 @@ const arrayOfPeople = [
   }
 ]
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople, function (err, people){
-    if(err) done(err);
+  Person.create(arrayOfPeople, function(err, people) {
+    if (err) done(err);
     done(null, people);
   })
 };
 
 
 const findPeopleByName = (personName, done) => {
-  Person.find({name: personName}, function(err, personFound) {
-    if(err) console.log(err);
+  Person.find({ name: personName }, function(err, personFound) {
+    if (err) console.log(err);
     done(null, personFound);
   })
 };
 
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  Person.findOne({ favoriteFoods: food }, function(err, personFound) {
+    if (err) console.log(err);
+    done(null, personFound)
+  })
 };
 
 const findPersonById = (personId, done) => {
