@@ -77,10 +77,10 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  Person.find(personId, function(err, person) {
+  Person.findById(personId, async (err, person) => {
     if (err) console.log(err);
-    person.favoriteFoods.push(foodToAdd);
-    person.save();
+    await person.favoriteFoods.push(foodToAdd);
+    await person.save();
     done(null, person)
   })
 };
