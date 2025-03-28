@@ -75,9 +75,6 @@ const findPersonById = (personId, done) => {
   });
 };
 
-Person.deleteMany({ name: "Poldo" }, function(err) {
-  console.log("deleted successfully")
-})
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
   Person.findById(personId, function(err, person) {
