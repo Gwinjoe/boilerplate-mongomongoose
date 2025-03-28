@@ -76,6 +76,10 @@ const findPersonById = (personId, done) => {
 };
 
 const findEditThenSave = (personId, done) => {
+  Person.deleteMany({}, (err, person) => {
+    if (err) console.log(err)
+    person.save()
+  })
   const foodToAdd = "hamburger";
   Person.findById(personId, async (err, person) => {
     if (err) console.log(err);
